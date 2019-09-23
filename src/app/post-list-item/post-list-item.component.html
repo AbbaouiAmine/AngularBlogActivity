@@ -1,0 +1,21 @@
+<li class="list-group-item" [ngClass]="{'list-group-item':true,
+                                        'list-group-item-success': postElementToDisplay.loveIts > 0,
+                                        'list-group-item-danger': postElementToDisplay.loveIts < 0}">
+  <h4 style=" width: 50%; text-decoration: underline;"
+  [ngStyle]="{color: postColor}">{{ postElementToDisplay.title }}</h4>
+
+  <p style="display:block; float:right; margin-top: -40px;">{{ postElementToDisplay.created_at |date:'short' }}</p> 
+  <p [ngStyle]="{color: postColor}">{{ postElementToDisplay.content }}</p>
+
+  <button (click)="onDeletePost(postElementToDisplay)" class="btn btn-danger" style="margin-right: 10px;">Supprimer</button>
+  
+  <button type="button" class="btn btn-success"(click)="onLikeIt(postElementToDisplay)">
+    <span *ngIf="postElementToDisplay.loveIts > 0">{{ postElementToDisplay.loveIts }}</span>
+    <i class="far fa-thumbs-up"></i>
+  </button>
+
+  <button type="button" class="btn btn-danger" style="margin-left:10px;" (click)="onDontLikeIt(postElementToDisplay)">
+    <span *ngIf="postElementToDisplay.loveIts < 0">{{ postElementToDisplay.loveIts }}</span>
+    <i class="far fa-thumbs-down"></i>
+  </button>
+</li>
